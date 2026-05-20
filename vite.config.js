@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/ai-landing-page/',
+  base: '', // Chuỗi rỗng giúp tự động nhận diện mọi đường dẫn tĩnh sau khi build
 })
