@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "AI Cinematic Video Creator",
+    "description": "Tạo video điện ảnh chuyên nghiệp với AI – chất lượng 4K, hiệu ứng cinematic đỉnh cao, phù hợp mọi nền tảng.",
+    "badge": "HOT",
+    "price": "80k",
+    "priceNumber": 80000,
+    "thumbnail": "https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=640&h=360&fit=crop&auto=format",
+    "category": "Video"
+  },
+  {
+    "id": 2,
+    "name": "AI Video SEO Tool",
+    "description": "Tối ưu hóa video cho SEO tự động – tiêu đề, mô tả, hashtag và thumbnail được tạo bởi AI.",
+    "badge": "NEW",
+    "price": "60k",
+    "priceNumber": 60000,
+    "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=360&fit=crop&auto=format",
+    "category": "SEO"
+  },
+  {
+    "id": 3,
+    "name": "AI Professional Prompt Generator",
+    "description": "Tạo prompt chuyên nghiệp cho Midjourney, DALL-E, Stable Diffusion – kết quả ấn tượng mỗi lần.",
+    "badge": "HOT",
+    "price": "40k",
+    "priceNumber": 40000,
+    "thumbnail": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=640&h=360&fit=crop&auto=format",
+    "category": "Prompt"
+  },
+  {
+    "id": 4,
+    "name": "AI Photo Editor",
+    "description": "Chỉnh sửa ảnh thông minh với AI – xóa nền, nâng cấp độ phân giải, retouching tự động siêu nhanh.",
+    "badge": "NEW",
+    "price": "50k",
+    "priceNumber": 50000,
+    "thumbnail": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=640&h=360&fit=crop&auto=format",
+    "category": "Ảnh"
+  },
+  {
+    "id": 5,
+    "name": "AI Thumbnail Creator",
+    "description": "Thiết kế thumbnail YouTube, TikTok thu hút triệu view – AI tạo ra trong vài giây.",
+    "badge": "HOT",
+    "price": "45k",
+    "priceNumber": 45000,
+    "thumbnail": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=640&h=360&fit=crop&auto=format",
+    "category": "Thiết kế"
+  },
+  {
+    "id": 6,
+    "name": "AI Script Writer",
+    "description": "Viết kịch bản video, bài đăng mạng xã hội và nội dung marketing chuyên nghiệp bằng AI.",
+    "badge": "NEW",
+    "price": "60k",
+    "priceNumber": 60000,
+    "thumbnail": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=640&h=360&fit=crop&auto=format",
+    "category": "Nội dung"
+  }
+]
