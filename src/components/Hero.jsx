@@ -80,36 +80,33 @@ export default function Hero() {
           — tất cả trong một hệ sinh thái.
         </motion.p>
 
-        {/* CTA Buttons — hero-cta-group uses pure CSS responsive */}
+        {/* CTA Buttons — layout 100% controlled by .hero-cta-group CSS */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="hero-cta-group mb-10"
+          className="hero-cta-group"
         >
-          <button
-            onClick={scrollToApps}
-            className="hero-btn btn-neon inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl"
-          >
+          <button onClick={scrollToApps} className="hero-btn btn-neon">
             <Play size={17} />
             Khám Phá Ứng Dụng
           </button>
           <button
             onClick={scrollToBooking}
-            className="hero-btn glass border-neon inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-white hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+            className="hero-btn glass border-neon"
+            style={{ color: '#fff' }}
           >
-            <Sparkles size={17} className="text-cyan-400" />
+            <Sparkles size={17} style={{ color: '#00d4ff' }} />
             Đặt Hàng Ngay
           </button>
         </motion.div>
 
-        {/* Stats — hero-stats uses pure CSS responsive grid */}
+        {/* Stats — layout 100% controlled by .hero-stats CSS */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="hero-stats max-w-sm mx-auto"
-          style={{ maxWidth: 'none' }}
+          className="hero-stats"
         >
           {[
             { value: '10K+', label: 'Khách hàng' },
@@ -117,9 +114,9 @@ export default function Hero() {
             { value: '6',    label: 'Ứng dụng AI' },
             { value: '99%',  label: 'Hài lòng' },
           ].map((stat, i) => (
-            <div key={i} className="glass rounded-xl py-3 px-2 border border-white/5 text-center">
-              <div className="section-title text-xl font-bold gradient-text">{stat.value}</div>
-              <div className="text-xs text-slate-400 mt-1 tracking-wider">{stat.label}</div>
+            <div key={i} className="glass" style={{ borderRadius: 12, padding: '0.75rem 0.5rem', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
+              <div className="section-title gradient-text" style={{ fontSize: '1.25rem', fontWeight: 700 }}>{stat.value}</div>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: 4, letterSpacing: '0.05em' }}>{stat.label}</div>
             </div>
           ))}
         </motion.div>

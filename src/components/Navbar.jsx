@@ -29,92 +29,133 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── Main nav bar ── */}
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`navbar-root fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'glass border-b border-white/8 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent'
-        }`}
+        style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+          transition: 'background 0.5s, box-shadow 0.5s',
+          ...(scrolled ? {
+            background: 'rgba(2,4,8,0.85)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 4px 30px rgba(0,0,0,0.5)',
+          } : {
+            background: 'transparent',
+          }),
+        }}
       >
-        <div className="navbar-inner max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        {/* navbar-inner: layout controlled 100% by CSS */}
+        <div className="navbar-inner">
 
           {/* Logo */}
-          <button onClick={() => scrollTo('#hero')} className="navbar-logo flex items-center gap-2 group shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.4)]">
-              <Sparkles size={16} className="text-white" />
+          <button onClick={() => scrollTo('#hero')} className="navbar-logo">
+            <div style={{
+              width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+              background: 'linear-gradient(135deg, #00d4ff, #a855f7)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 0 15px rgba(0,212,255,0.4)',
+            }}>
+              <Sparkles size={16} color="#fff" />
             </div>
-            <span className="section-title text-base font-bold gradient-text whitespace-nowrap">
+            <span className="section-title gradient-text" style={{ fontSize: '1rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
               AI Creative
             </span>
           </button>
 
-          {/* Desktop nav links */}
-          <div className="navbar-links flex items-center gap-1 flex-1 justify-center">
+          {/* Desktop nav links — hidden on mobile via CSS */}
+          <div className="navbar-links">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                  active === link.href
-                    ? 'text-cyan-400 bg-cyan-400/10'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
+                style={{
+                  padding: '0.5rem 0.75rem',
+                  borderRadius: 8,
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  whiteSpace: 'nowrap',
+                  background: active === link.href ? 'rgba(0,212,255,0.1)' : 'transparent',
+                  color: active === link.href ? '#00d4ff' : '#94a3b8',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                }}
+                onMouseEnter={e => { if (active !== link.href) e.currentTarget.style.color = '#fff'; }}
+                onMouseLeave={e => { if (active !== link.href) e.currentTarget.style.color = '#94a3b8'; }}
               >
                 {link.label}
               </button>
             ))}
           </div>
 
-          {/* Right: CTA + hamburger */}
-          <div className="navbar-right flex items-center gap-2 shrink-0">
+          {/* Right side */}
+          <div className="navbar-right">
+            {/* CTA button — hidden on mobile via CSS */}
             <button
               onClick={() => scrollTo('#booking')}
-              className="navbar-cta btn-neon flex items-center gap-2 px-4 py-2 text-sm rounded-xl whitespace-nowrap"
+              className="navbar-cta btn-neon"
+              style={{ alignItems: 'center', gap: 8, padding: '0.5rem 1rem', fontSize: '0.875rem', borderRadius: 12, whiteSpace: 'nowrap' }}
             >
               <Sparkles size={13} />
               Đặt Hàng
             </button>
+
+            {/* Hamburger — hidden on desktop via CSS */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
-              className="navbar-hamburger glass w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 shrink-0"
+              className="navbar-hamburger glass"
+              style={{
+                width: 36, height: 36, borderRadius: 12,
+                alignItems: 'center', justifyContent: 'center',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.04)',
+                cursor: 'pointer', flexShrink: 0,
+              }}
             >
-              {mobileOpen ? <X size={18} className="text-white" /> : <Menu size={18} className="text-white" />}
+              {mobileOpen ? <X size={18} color="#fff" /> : <Menu size={18} color="#fff" />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile drawer — CSS-driven, no Framer height animation */}
-      <div
-        className={`navbar-drawer fixed top-16 left-0 right-0 z-40 glass border-b border-white/8 ${
-          mobileOpen ? 'navbar-drawer--open' : ''
-        }`}
-      >
-        <div className="px-4 py-3 space-y-1">
+      {/* ── Mobile drawer — max-height CSS transition, no Framer ── */}
+      <div className={`navbar-drawer glass${mobileOpen ? ' navbar-drawer--open' : ''}`}>
+        <div style={{ padding: '0.75rem 1rem', display: 'flex', flexDirection: 'column', gap: 4 }}>
           {navLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                active === link.href
-                  ? 'text-cyan-400 bg-cyan-400/10'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
-              }`}
+              style={{
+                width: '100%', textAlign: 'left',
+                padding: '0.75rem 1rem', borderRadius: 12,
+                fontSize: '0.875rem', fontWeight: 500,
+                background: active === link.href ? 'rgba(0,212,255,0.1)' : 'transparent',
+                color: active === link.href ? '#00d4ff' : '#cbd5e1',
+                border: 'none', cursor: 'pointer',
+                transition: 'all 0.3s',
+              }}
             >
               {link.label}
             </button>
           ))}
-          <div className="pt-1 pb-1">
-            <button
-              onClick={() => scrollTo('#booking')}
-              className="btn-neon w-full flex items-center justify-center gap-2 py-3 text-sm rounded-xl"
-            >
-              <Sparkles size={14} />
-              Đặt Hàng Ngay
-            </button>
-          </div>
+          <button
+            onClick={() => scrollTo('#booking')}
+            className="btn-neon"
+            style={{
+              marginTop: 4, width: '100%', display: 'flex',
+              alignItems: 'center', justifyContent: 'center',
+              gap: 8, padding: '0.75rem', fontSize: '0.875rem',
+              borderRadius: 12,
+            }}
+          >
+            <Sparkles size={14} />
+            Đặt Hàng Ngay
+          </button>
         </div>
       </div>
     </>
