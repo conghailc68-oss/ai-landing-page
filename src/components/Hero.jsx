@@ -86,18 +86,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
         >
           <button
             onClick={scrollToApps}
-            className="btn-neon flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl"
+            className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl w-full sm:w-auto"
           >
             <Play size={18} />
             Khám Phá Ứng Dụng
           </button>
           <button
             onClick={scrollToBooking}
-            className="glass border-neon flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-white hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+            className="glass border-neon inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-white w-full sm:w-auto hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
           >
             <Sparkles size={18} className="text-cyan-400" />
             Đặt Hàng Ngay
@@ -109,7 +109,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-8 mt-16"
+          className="flex flex-wrap justify-center gap-10"
         >
           {[
             { value: '10K+', label: 'Khách hàng' },
@@ -117,7 +117,7 @@ export default function Hero() {
             { value: '6', label: 'Ứng dụng AI' },
             { value: '99%', label: 'Hài lòng' },
           ].map((stat, i) => (
-            <div key={i} className="text-center">
+            <div key={i} className="text-center px-2">
               <div className="section-title text-2xl font-bold gradient-text">{stat.value}</div>
               <div className="text-xs text-slate-400 mt-1 tracking-wider">{stat.label}</div>
             </div>
