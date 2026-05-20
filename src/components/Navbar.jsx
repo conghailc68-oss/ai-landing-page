@@ -33,29 +33,24 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'glass border-b border-white/8 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-            : 'bg-transparent'
+        className={`navbar-root fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? 'glass border-b border-white/8 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <div className="navbar-inner max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
           {/* Logo */}
-          <button
-            onClick={() => scrollTo('#hero')}
-            className="flex items-center gap-2 group shrink-0"
-          >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,212,255,0.6)] transition-shadow duration-300">
+          <button onClick={() => scrollTo('#hero')} className="navbar-logo flex items-center gap-2 group shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.4)]">
               <Sparkles size={16} className="text-white" />
             </div>
-            <span className="section-title text-sm sm:text-base font-bold gradient-text whitespace-nowrap">
+            <span className="section-title text-base font-bold gradient-text whitespace-nowrap">
               AI Creative
             </span>
           </button>
 
-          {/* Desktop links — only visible md+ */}
-          <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
+          {/* Desktop nav links */}
+          <div className="navbar-links flex items-center gap-1 flex-1 justify-center">
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -71,37 +66,31 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-2 shrink-0">
-            {/* CTA — hidden on mobile, visible sm+ but only when md+ hides hamburger */}
+          {/* Right: CTA + hamburger */}
+          <div className="navbar-right flex items-center gap-2 shrink-0">
             <button
               onClick={() => scrollTo('#booking')}
-              className="btn-neon hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm rounded-xl whitespace-nowrap"
+              className="navbar-cta btn-neon flex items-center gap-2 px-4 py-2 text-sm rounded-xl whitespace-nowrap"
             >
               <Sparkles size={13} />
               Đặt Hàng
             </button>
-
-            {/* Hamburger — only on < md */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
-              className="md:hidden glass w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 shrink-0"
+              className="navbar-hamburger glass w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 shrink-0"
             >
-              {mobileOpen
-                ? <X size={18} className="text-white" />
-                : <Menu size={18} className="text-white" />}
+              {mobileOpen ? <X size={18} className="text-white" /> : <Menu size={18} className="text-white" />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile drawer */}
-      <motion.div
-        initial={false}
-        animate={{ height: mobileOpen ? 'auto' : 0, opacity: mobileOpen ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed top-16 left-0 right-0 z-40 overflow-hidden glass border-b border-white/8 md:hidden"
+      {/* Mobile drawer — CSS-driven, no Framer height animation */}
+      <div
+        className={`navbar-drawer fixed top-16 left-0 right-0 z-40 glass border-b border-white/8 ${
+          mobileOpen ? 'navbar-drawer--open' : ''
+        }`}
       >
         <div className="px-4 py-3 space-y-1">
           {navLinks.map((link) => (
@@ -127,7 +116,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }

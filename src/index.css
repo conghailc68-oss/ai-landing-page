@@ -222,3 +222,89 @@ body {
     transition-duration:  0.01ms !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE — pure CSS @media, guaranteed to work
+   regardless of Tailwind utility generation
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Navbar mobile ─────────────────────────────────────────── */
+
+/* Drawer: hidden by default on all screens */
+.navbar-drawer {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+.navbar-drawer--open {
+  max-height: 400px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Desktop (≥ 768px): hide hamburger + drawer, show links + CTA */
+@media (min-width: 768px) {
+  .navbar-hamburger { display: none !important; }
+  .navbar-drawer    { display: none !important; }
+  .navbar-links     { display: flex !important; }
+  .navbar-cta       { display: flex !important; }
+}
+
+/* Mobile (< 768px): hide desktop links + CTA, show hamburger */
+@media (max-width: 767px) {
+  .navbar-links { display: none !important; }
+  .navbar-cta   { display: none !important; }
+  .navbar-hamburger { display: flex !important; }
+}
+
+/* ── Hero Section mobile ───────────────────────────────────── */
+
+/* CTA button group: column on mobile */
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  width: 100%;
+}
+.hero-cta-group .hero-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Stats grid: 2 columns on mobile */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+/* Hero title: smaller on mobile */
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 2.25rem !important; /* 36px */
+    line-height: 1.2 !important;
+  }
+  .hero-desc {
+    font-size: 0.9375rem !important; /* 15px */
+  }
+}
+
+/* On tablet+ (≥ 768px): CTA row, stats 4 cols */
+@media (min-width: 768px) {
+  .hero-cta-group {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+  .hero-cta-group .hero-btn {
+    width: auto;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}

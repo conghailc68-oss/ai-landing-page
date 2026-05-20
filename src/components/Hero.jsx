@@ -56,7 +56,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="section-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-5 sm:mb-6 leading-tight"
+          className="hero-title section-title text-4xl font-black mb-5 leading-tight"
         >
           <span className="gradient-text">AI Content</span>
           <br />
@@ -70,7 +70,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed"
+          className="hero-desc text-base text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed"
         >
           Tạo{' '}
           <span className="text-cyan-400 font-semibold">video cinematic</span>,{' '}
@@ -80,35 +80,36 @@ export default function Hero() {
           — tất cả trong một hệ sinh thái.
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons — hero-cta-group uses pure CSS responsive */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-12 sm:mb-16 md:mb-20"
+          className="hero-cta-group mb-10"
         >
           <button
             onClick={scrollToApps}
-            className="btn-neon inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-xl"
+            className="hero-btn btn-neon inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl"
           >
             <Play size={17} />
             Khám Phá Ứng Dụng
           </button>
           <button
             onClick={scrollToBooking}
-            className="glass border-neon inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-xl text-white hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+            className="hero-btn glass border-neon inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-white hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
           >
             <Sparkles size={17} className="text-cyan-400" />
             Đặt Hàng Ngay
           </button>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats — hero-stats uses pure CSS responsive grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-lg sm:max-w-none mx-auto"
+          className="hero-stats max-w-sm mx-auto"
+          style={{ maxWidth: 'none' }}
         >
           {[
             { value: '10K+', label: 'Khách hàng' },
@@ -116,16 +117,9 @@ export default function Hero() {
             { value: '6',    label: 'Ứng dụng AI' },
             { value: '99%',  label: 'Hài lòng' },
           ].map((stat, i) => (
-            <div
-              key={i}
-              className="glass rounded-xl py-3 px-2 border border-white/5 text-center"
-            >
-              <div className="section-title text-xl sm:text-2xl font-bold gradient-text">
-                {stat.value}
-              </div>
-              <div className="text-[11px] sm:text-xs text-slate-400 mt-1 tracking-wider">
-                {stat.label}
-              </div>
+            <div key={i} className="glass rounded-xl py-3 px-2 border border-white/5 text-center">
+              <div className="section-title text-xl font-bold gradient-text">{stat.value}</div>
+              <div className="text-xs text-slate-400 mt-1 tracking-wider">{stat.label}</div>
             </div>
           ))}
         </motion.div>
