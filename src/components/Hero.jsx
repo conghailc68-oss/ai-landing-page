@@ -2,24 +2,21 @@ import { motion } from 'framer-motion';
 import { Sparkles, Play, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
-  const scrollToApps = () => {
+  const scrollToApps = () =>
     document.getElementById('apps')?.scrollIntoView({ behavior: 'smooth' });
-  };
-  const scrollToBooking = () => {
+  const scrollToBooking = () =>
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern pt-16"
     >
-      {/* Ambient orbs */}
-      <div className="orb w-[600px] h-[600px] bg-blue-500/10 top-[-200px] left-[-200px]" />
-      <div className="orb w-[500px] h-[500px] bg-purple-500/10 bottom-[-100px] right-[-100px]" />
-      <div className="orb w-[300px] h-[300px] bg-cyan-400/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      {/* Ambient orbs — clipped so they never cause horizontal scroll */}
+      <div className="orb w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-blue-500/10 top-[-150px] left-[-150px]" />
+      <div className="orb w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] bg-purple-500/10 bottom-[-80px] right-[-80px]" />
 
-      {/* Background image overlay */}
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
         style={{
@@ -38,19 +35,20 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-4 sm:px-6 w-full max-w-5xl mx-auto py-12">
+
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 glass border-neon rounded-full px-5 py-2 mb-8"
+          className="inline-flex items-center gap-2 glass border-neon rounded-full px-4 py-2 mb-6 sm:mb-8 max-w-full"
         >
-          <Sparkles size={14} className="text-cyan-400" />
-          <span className="text-xs font-medium text-cyan-300 tracking-widest uppercase">
+          <Sparkles size={13} className="text-cyan-400 shrink-0" />
+          <span className="text-[10px] sm:text-xs font-medium text-cyan-300 tracking-widest uppercase leading-tight">
             Nền tảng AI sáng tạo nội dung #1 Việt Nam
           </span>
-          <Sparkles size={14} className="text-purple-400" />
+          <Sparkles size={13} className="text-purple-400 shrink-0" />
         </motion.div>
 
         {/* Main title */}
@@ -58,7 +56,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="section-title text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight"
+          className="section-title text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-5 sm:mb-6 leading-tight"
         >
           <span className="gradient-text">AI Content</span>
           <br />
@@ -72,13 +70,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed"
         >
           Tạo{' '}
           <span className="text-cyan-400 font-semibold">video cinematic</span>,{' '}
           <span className="text-purple-400 font-semibold">prompt chuyên nghiệp</span>,{' '}
           <span className="text-pink-400 font-semibold">nội dung SEO</span> và{' '}
-          <span className="text-cyan-400 font-semibold">hình ảnh AI</span> — tất cả trong một hệ sinh thái.
+          <span className="text-cyan-400 font-semibold">hình ảnh AI</span>{' '}
+          — tất cả trong một hệ sinh thái.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -86,20 +85,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-12 sm:mb-16 md:mb-20"
         >
           <button
             onClick={scrollToApps}
-            className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl w-full sm:w-auto"
+            className="btn-neon inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-xl"
           >
-            <Play size={18} />
+            <Play size={17} />
             Khám Phá Ứng Dụng
           </button>
           <button
             onClick={scrollToBooking}
-            className="glass border-neon inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-white w-full sm:w-auto hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+            className="glass border-neon inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold rounded-xl text-white hover:bg-white/10 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,212,255,0.2)]"
           >
-            <Sparkles size={18} className="text-cyan-400" />
+            <Sparkles size={17} className="text-cyan-400" />
             Đặt Hàng Ngay
           </button>
         </motion.div>
@@ -109,17 +108,24 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-10"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-lg sm:max-w-none mx-auto"
         >
           {[
             { value: '10K+', label: 'Khách hàng' },
             { value: '50K+', label: 'Nội dung đã tạo' },
-            { value: '6', label: 'Ứng dụng AI' },
-            { value: '99%', label: 'Hài lòng' },
+            { value: '6',    label: 'Ứng dụng AI' },
+            { value: '99%',  label: 'Hài lòng' },
           ].map((stat, i) => (
-            <div key={i} className="text-center px-2">
-              <div className="section-title text-2xl font-bold gradient-text">{stat.value}</div>
-              <div className="text-xs text-slate-400 mt-1 tracking-wider">{stat.label}</div>
+            <div
+              key={i}
+              className="glass rounded-xl py-3 px-2 border border-white/5 text-center"
+            >
+              <div className="section-title text-xl sm:text-2xl font-bold gradient-text">
+                {stat.value}
+              </div>
+              <div className="text-[11px] sm:text-xs text-slate-400 mt-1 tracking-wider">
+                {stat.label}
+              </div>
             </div>
           ))}
         </motion.div>
@@ -130,15 +136,12 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer"
         onClick={scrollToApps}
       >
-        <span className="text-xs text-slate-500 tracking-widest uppercase">Cuộn xuống</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <ChevronDown size={20} className="text-cyan-400" />
+        <span className="text-[10px] text-slate-500 tracking-widest uppercase">Cuộn xuống</span>
+        <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+          <ChevronDown size={18} className="text-cyan-400" />
         </motion.div>
       </motion.div>
     </section>

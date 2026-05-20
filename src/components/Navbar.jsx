@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Sparkles, Menu, X } from 'lucide-react';
 
@@ -16,10 +16,8 @@ export default function Navbar() {
   const [active, setActive] = useState('#hero');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -41,27 +39,28 @@ export default function Navbar() {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+
           {/* Logo */}
           <button
             onClick={() => scrollTo('#hero')}
-            className="flex items-center gap-2.5 group shrink-0"
+            className="flex items-center gap-2 group shrink-0"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,212,255,0.6)] transition-shadow duration-300">
               <Sparkles size={16} className="text-white" />
             </div>
-            <span className="section-title text-base font-bold gradient-text hidden sm:block whitespace-nowrap">
+            <span className="section-title text-sm sm:text-base font-bold gradient-text whitespace-nowrap">
               AI Creative
             </span>
           </button>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          {/* Desktop links — only visible md+ */}
+          <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 ${
                   active === link.href
                     ? 'text-cyan-400 bg-cyan-400/10'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -72,49 +71,61 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA + Mobile toggle */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Right side */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* CTA — hidden on mobile, visible sm+ but only when md+ hides hamburger */}
             <button
               onClick={() => scrollTo('#booking')}
-              className="btn-neon hidden sm:inline-flex items-center gap-2 px-5 py-2 text-sm rounded-xl whitespace-nowrap"
+              className="btn-neon hidden md:inline-flex items-center gap-2 px-4 py-2 text-sm rounded-xl whitespace-nowrap"
             >
-              <Sparkles size={14} />
+              <Sparkles size={13} />
               Đặt Hàng
             </button>
+
+            {/* Hamburger — only on < md */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden glass w-9 h-9 rounded-xl flex items-center justify-center border border-white/10"
+              aria-label="Toggle menu"
+              className="md:hidden glass w-9 h-9 rounded-xl flex items-center justify-center border border-white/10 shrink-0"
             >
-              {mobileOpen ? <X size={18} className="text-white" /> : <Menu size={18} className="text-white" />}
+              {mobileOpen
+                ? <X size={18} className="text-white" />
+                : <Menu size={18} className="text-white" />}
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <motion.div
         initial={false}
         animate={{ height: mobileOpen ? 'auto' : 0, opacity: mobileOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed top-16 left-0 right-0 z-40 overflow-hidden glass border-b border-white/8 md:hidden"
       >
-        <div className="px-4 py-4 space-y-1">
+        <div className="px-4 py-3 space-y-1">
           {navLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-300"
+              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                active === link.href
+                  ? 'text-cyan-400 bg-cyan-400/10'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
             >
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo('#booking')}
-            className="btn-neon w-full flex items-center justify-center gap-2 py-3 text-sm rounded-xl mt-2"
-          >
-            <Sparkles size={14} />
-            Đặt Hàng Ngay
-          </button>
+          <div className="pt-1 pb-1">
+            <button
+              onClick={() => scrollTo('#booking')}
+              className="btn-neon w-full flex items-center justify-center gap-2 py-3 text-sm rounded-xl"
+            >
+              <Sparkles size={14} />
+              Đặt Hàng Ngay
+            </button>
+          </div>
         </div>
       </motion.div>
     </>
