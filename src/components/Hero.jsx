@@ -8,104 +8,79 @@ export default function Hero() {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern pt-16"
-    >
-      {/* Ambient orbs — clipped so they never cause horizontal scroll */}
-      <div className="orb w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-blue-500/10 top-[-150px] left-[-150px]" />
-      <div className="orb w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] bg-purple-500/10 bottom-[-80px] right-[-80px]" />
+    <section id="hero" className="hero-section relative overflow-hidden grid-pattern">
+
+      {/* Ambient orbs */}
+      <div className="orb" style={{ width: 400, height: 400, background: 'rgba(48,128,255,0.10)', top: -150, left: -150 }} />
+      <div className="orb" style={{ width: 350, height: 350, background: 'rgba(168,85,247,0.10)', bottom: -80, right: -80 }} />
 
       {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1920&h=1080&fit=crop&auto=format')",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020408]/60 via-transparent to-[#020408]" />
+      <div className="hero-bg" style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1920&h=1080&fit=crop&auto=format')",
+      }} />
+      <div className="hero-bg-overlay" />
 
       {/* Scan line */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-        <div
-          className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
-          style={{ animation: 'scanline 8s linear infinite' }}
-        />
+        <div className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+          style={{ animation: 'scanline 8s linear infinite' }} />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 w-full max-w-5xl mx-auto py-12">
+      {/* ── Content ── */}
+      <div className="hero-content">
 
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 glass border-neon rounded-full px-4 py-2 mb-6 sm:mb-8 max-w-full"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          className="hero-badge glass border-neon"
         >
-          <Sparkles size={13} className="text-cyan-400 shrink-0" />
-          <span className="text-[10px] sm:text-xs font-medium text-cyan-300 tracking-widest uppercase leading-tight">
-            Nền tảng AI sáng tạo nội dung #1 Việt Nam
-          </span>
-          <Sparkles size={13} className="text-purple-400 shrink-0" />
+          <Sparkles size={13} color="#00d4ff" />
+          <span className="hero-badge__text">Nền tảng AI sáng tạo nội dung #1 Việt Nam</span>
+          <Sparkles size={13} color="#a855f7" />
         </motion.div>
 
-        {/* Main title */}
+        {/* Title — ONLY hero-title class, no Tailwind size/margin classes */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hero-title section-title text-4xl font-black mb-5 leading-tight"
+          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+          className="hero-title section-title"
         >
           <span className="gradient-text">AI Content</span>
           <br />
-          <span className="text-white">Creation</span>
+          <span style={{ color: '#fff' }}>Creation</span>
           <br />
           <span className="gradient-text neon-text">Ecosystem</span>
         </motion.h1>
 
-        {/* Description */}
+        {/* Description — ONLY hero-desc class, no Tailwind size/margin classes */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="hero-desc text-base text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
+          className="hero-desc"
         >
-          Tạo{' '}
-          <span className="text-cyan-400 font-semibold">video cinematic</span>,{' '}
-          <span className="text-purple-400 font-semibold">prompt chuyên nghiệp</span>,{' '}
-          <span className="text-pink-400 font-semibold">nội dung SEO</span> và{' '}
-          <span className="text-cyan-400 font-semibold">hình ảnh AI</span>{' '}
+          Tạo <span style={{ color: '#00d4ff', fontWeight: 600 }}>video cinematic</span>,{' '}
+          <span style={{ color: '#a855f7', fontWeight: 600 }}>prompt chuyên nghiệp</span>,{' '}
+          <span style={{ color: '#ec4899', fontWeight: 600 }}>nội dung SEO</span> và{' '}
+          <span style={{ color: '#00d4ff', fontWeight: 600 }}>hình ảnh AI</span>{' '}
           — tất cả trong một hệ sinh thái.
         </motion.p>
 
-        {/* CTA Buttons — layout 100% controlled by .hero-cta-group CSS */}
+        {/* CTA — ONLY hero-cta-group / hero-btn, no Tailwind layout classes */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
           className="hero-cta-group"
         >
-          <button onClick={scrollToApps} className="hero-btn btn-neon">
+          <button className="hero-btn btn-neon" onClick={scrollToApps}>
             <Play size={17} />
             Khám Phá Ứng Dụng
           </button>
-          <button
-            onClick={scrollToBooking}
-            className="hero-btn glass border-neon"
-            style={{ color: '#fff' }}
-          >
-            <Sparkles size={17} style={{ color: '#00d4ff' }} />
+          <button className="hero-btn hero-btn--outline glass border-neon" onClick={scrollToBooking}>
+            <Sparkles size={17} color="#00d4ff" />
             Đặt Hàng Ngay
           </button>
         </motion.div>
 
-        {/* Stats — layout 100% controlled by .hero-stats CSS */}
+        {/* Stats — ONLY hero-stats, no Tailwind grid/gap classes */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }}
           className="hero-stats"
         >
           {[
@@ -114,9 +89,9 @@ export default function Hero() {
             { value: '6',    label: 'Ứng dụng AI' },
             { value: '99%',  label: 'Hài lòng' },
           ].map((stat, i) => (
-            <div key={i} className="glass" style={{ borderRadius: 12, padding: '0.75rem 0.5rem', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
-              <div className="section-title gradient-text" style={{ fontSize: '1.25rem', fontWeight: 700 }}>{stat.value}</div>
-              <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: 4, letterSpacing: '0.05em' }}>{stat.label}</div>
+            <div key={i} className="hero-stat glass">
+              <div className="hero-stat__value section-title gradient-text">{stat.value}</div>
+              <div className="hero-stat__label">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -124,15 +99,13 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
+        className="hero-scroll-indicator"
         onClick={scrollToApps}
       >
-        <span className="text-[10px] text-slate-500 tracking-widest uppercase">Cuộn xuống</span>
+        <span className="hero-scroll-indicator__text">Cuộn xuống</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ChevronDown size={18} className="text-cyan-400" />
+          <ChevronDown size={18} color="#00d4ff" />
         </motion.div>
       </motion.div>
     </section>
